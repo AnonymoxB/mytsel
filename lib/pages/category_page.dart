@@ -24,7 +24,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   child: Column(
                 children: [
                   Text(
-                    (isExpens) ? "Tambah Expense" : "Tambah Pemasukan",
+                    (isExpens) ? "Tambah Pengeluaran" : "Tambah Pemasukan",
                     style: GoogleFonts.montserrat(
                         fontSize: 18,
                         color: (isExpens) ? Colors.red : Colors.green),
