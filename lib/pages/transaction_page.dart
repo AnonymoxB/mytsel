@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class TransactionPage extends StatefulWidget {
   const TransactionPage({super.key});
@@ -13,11 +14,13 @@ class _TransactionPageState extends State<TransactionPage> {
   bool isExpens = true;
   List<String> list = ['Makan dan Jajan', 'Transportasi', 'Nonton Film'];
   late String dropDownValue = list.first;
+  TextEditingController dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: Text("Tambah Transaksi"),
       ),
       body: SingleChildScrollView(
@@ -82,10 +85,33 @@ class _TransactionPageState extends State<TransactionPage> {
               SizedBox(
                 height: 25,
               ),
-              TextField(
-                decoration: InputDecoration(labelText: "Pilih Tanggal"),
-                onTap: () {},
-              )
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextField(
+                  controller: dateController,
+                  decoration: InputDecoration(labelText: "Pilih Tanggal"),
+                  onTap: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2022),
+                        lastDate: DateTime(2099));
+
+                    if (pickedDate != null) {
+                      String formattedDate =
+                          DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                      dateController.text = formattedDate;
+                    }
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              Center(
+                  child:
+                      ElevatedButton(onPressed: () {}, child: Text("Simpan")))
             ],
           ),
         ),
