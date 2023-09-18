@@ -23,8 +23,12 @@ class _CategoryPageState extends State<CategoryPage> {
               child: Center(
                   child: Column(
                 children: [
-                  Text("Tambah Pemasukan",
-                      style: GoogleFonts.montserrat(fontSize: 18)),
+                  Text(
+                    (isExpens) ? "Tambah Expense" : "Tambah Pemasukan",
+                    style: GoogleFonts.montserrat(
+                        fontSize: 18,
+                        color: (isExpens) ? Colors.red : Colors.green),
+                  ),
                   TextFormField(
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), hintText: "Nama"),
